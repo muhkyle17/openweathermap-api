@@ -40,32 +40,35 @@ function App() {
   function consecutiveDays(days, index) {
     const today = new Date()
     const tomorrow = new Date(today)
-    if (index === 0) {
-      tomorrow.setDate(tomorrow.getDate())
-      const dayName = days[tomorrow.getDay()]
-      return <p className='text-2xl'>{dayName.slice(0, 3)}</p>
-    } else if (index === 1) {
-      tomorrow.setDate(tomorrow.getDate() + 1)
-      const dayName = days[tomorrow.getDay()]
-      return <p className='text-2xl'>{dayName.slice(0, 3)}</p>
-    } else if (index === 2) {
-      tomorrow.setDate(tomorrow.getDate() + 2)
-      const dayName = days[tomorrow.getDay()]
-      return <p className='text-2xl'>{dayName.slice(0, 3)}</p>
-    } else if (index === 3) {
-      tomorrow.setDate(tomorrow.getDate() + 3)
-      const dayName = days[tomorrow.getDay()]
-      return <p className='text-2xl'>{dayName.slice(0, 3)}</p>
-    } else if (index === 4) {
-      tomorrow.setDate(tomorrow.getDate() + 4)
-      const dayName = days[tomorrow.getDay()]
-      return <p className='text-2xl'>{dayName.slice(0, 3)}</p>
-    } else if (index === 5) {
-      tomorrow.setDate(tomorrow.getDate() + 5)
-      const dayName = days[tomorrow.getDay()]
-      return <p className='text-2xl'>{dayName.slice(0, 3)}</p>
-    } else {
-      console.log('Please work')
+    let dayName = null
+    switch (index) {
+      case 0:
+        tomorrow.setDate(tomorrow.getDate())
+        dayName = days[tomorrow.getDay()]
+        return <p className='text-2xl'>{dayName.slice(0, 3)}</p>
+      case 1:
+        tomorrow.setDate(tomorrow.getDate() + 1)
+        dayName = days[tomorrow.getDay()]
+        return <p className='text-2xl'>{dayName.slice(0, 3)}</p>
+      case 2:
+        tomorrow.setDate(tomorrow.getDate() + 2)
+        dayName = days[tomorrow.getDay()]
+        return <p className='text-2xl'>{dayName.slice(0, 3)}</p>
+      case 3:
+        tomorrow.setDate(tomorrow.getDate() + 3)
+        dayName = days[tomorrow.getDay()]
+        return <p className='text-2xl'>{dayName.slice(0, 3)}</p>
+      case 4:
+        tomorrow.setDate(tomorrow.getDate() + 4)
+        dayName = days[tomorrow.getDay()]
+        return <p className='text-2xl'>{dayName.slice(0, 3)}</p>
+      case 5:
+        tomorrow.setDate(tomorrow.getDate() + 5)
+        dayName = days[tomorrow.getDay()]
+        return <p className='text-2xl'>{dayName.slice(0, 3)}</p>
+      default:
+        console.log('Please work')
+        break
     }
   }
 
