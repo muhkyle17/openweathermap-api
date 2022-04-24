@@ -9,7 +9,7 @@ function App() {
   const API_TOKEN = process.env.REACT_APP_API_KEY
   const API =
     'https://api.openweathermap.org/data/2.5/onecall?lat=49.2608724&lon=-123.113952&units=metric&exclude=minutely,hourly,alerts&appid='
-  const [weatherDays, setWeatherDays] = useState([])
+  const [daily, setDaily] = useState([])
   const [dayToday, setDayToday] = useState('')
 
   useEffect(() => {
@@ -19,10 +19,8 @@ function App() {
     })
       .then((res) => {
         data = res.data
-
-        const days = data.daily
-        console.log(days)
-        setWeatherDays(days)
+        const eachDay = data.daily
+        setDaily(eachDay)
       })
       .catch((err) => {
         console.log(err)
@@ -66,14 +64,6 @@ function App() {
       tomorrow.setDate(tomorrow.getDate() + 5)
       const dayName = days[tomorrow.getDay()]
       return <p className='text-2xl'>{dayName.slice(0, 3)}</p>
-    } else if (index === 6) {
-      tomorrow.setDate(tomorrow.getDate() + 6)
-      const dayName = days[tomorrow.getDay()]
-      return <p className='text-2xl'>{dayName.slice(0, 3)}</p>
-    } else if (index === 7) {
-      tomorrow.setDate(tomorrow.getDate() + 7)
-      const dayName = days[tomorrow.getDay()]
-      return <p className='text-2xl'>{dayName.slice(0, 3)}</p>
     } else {
       console.log('Please work')
     }
@@ -97,45 +87,23 @@ function App() {
     } else if (index === 1) {
       tomorrow.setDate(tomorrow.getDate() + 1)
       const dayName = days[tomorrow.getDay()]
-      if (dayName === dayToday) {
-        return 'bg-gray-300'
-      }
+      return dayName === dayToday ? 'bg-gray-300' : 'bg-gray-200'
     } else if (index === 2) {
       tomorrow.setDate(tomorrow.getDate() + 2)
       const dayName = days[tomorrow.getDay()]
-      if (dayName === dayToday) {
-        return 'bg-gray-300'
-      }
+      return dayName === dayToday ? 'bg-gray-300' : 'bg-gray-200'
     } else if (index === 3) {
       tomorrow.setDate(tomorrow.getDate() + 3)
       const dayName = days[tomorrow.getDay()]
-      if (dayName === dayToday) {
-        return 'bg-gray-300'
-      }
+      return dayName === dayToday ? 'bg-gray-300' : 'bg-gray-200'
     } else if (index === 4) {
       tomorrow.setDate(tomorrow.getDate() + 4)
       const dayName = days[tomorrow.getDay()]
-      if (dayName === dayToday) {
-        return 'bg-gray-300'
-      }
+      return dayName === dayToday ? 'bg-gray-300' : 'bg-gray-200'
     } else if (index === 5) {
       tomorrow.setDate(tomorrow.getDate() + 5)
       const dayName = days[tomorrow.getDay()]
-      if (dayName === dayToday) {
-        return 'bg-gray-300'
-      }
-    } else if (index === 6) {
-      tomorrow.setDate(tomorrow.getDate() + 6)
-      const dayName = days[tomorrow.getDay()]
-      if (dayName === dayToday) {
-        return 'bg-gray-300'
-      }
-    } else if (index === 7) {
-      tomorrow.setDate(tomorrow.getDate() + 7)
-      const dayName = days[tomorrow.getDay()]
-      if (dayName === dayToday) {
-        return 'bg-gray-300'
-      }
+      return dayName === dayToday ? 'bg-gray-300' : 'bg-gray-200'
     } else {
       console.log('Please work')
     }
@@ -144,7 +112,7 @@ function App() {
   return (
     <div className='flex items-center justify-center w-screen h-screen bg-gray-200'>
       <div className='flex items-center justify-center border border-gray-300'>
-        {weatherDays.slice(0, 5).map((day, index) => (
+        {daily.slice(0, 5).map((day, index) => (
           <div
             className={`flex flex-col h-auto py-6 w-60 items-center justify-around  ${colorDayNumber(
               days,
